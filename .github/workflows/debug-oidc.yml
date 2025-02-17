@@ -1,17 +1,19 @@
-name: Debug OIDC Token
-on:
-  workflow_dispatch:  # This allows you to run it manually
+name: Debug OIDC Token  # Name of the workflow
+
+on: 
+  workflow_dispatch:  # Allows manual execution
 
 jobs:
   decode-oidc-token:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # GitHub runner
     permissions:
-      id-token: write   # Required for fetching OIDC token
+      id-token: write   # Required for GitHub OIDC authentication
       contents: read
+    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      
+
       - name: Fetch OIDC Token Claims
         run: |
           echo "Fetching OIDC Token Claims..."
