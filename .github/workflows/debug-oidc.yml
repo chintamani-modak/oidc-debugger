@@ -21,4 +21,3 @@ jobs:
         run: |
           echo "Decoding OIDC Token..."
           echo "${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" | awk -F'.' '{print $2}' | base64 -d | jq .
-
