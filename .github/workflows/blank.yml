@@ -9,7 +9,7 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - name: Check GitHub OIDC Token
+      - name: Fetch OIDC Token Claims
         run: |
           echo "Fetching OIDC Token Claims..."
           curl -H "Authorization: Bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL" | jq .
@@ -17,4 +17,3 @@ jobs:
       - name: Decode OIDC Token
         run: |
           echo "${ACTIONS_ID_TOKEN_REQUEST_TOKEN}" | awk -F'.' '{print $2}' | base64 -d | jq .
-
